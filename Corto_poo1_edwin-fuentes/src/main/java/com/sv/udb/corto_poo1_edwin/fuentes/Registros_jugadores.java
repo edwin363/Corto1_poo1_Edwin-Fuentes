@@ -5,7 +5,9 @@
  */
 package com.sv.udb.corto_poo1_edwin.fuentes;
 
+import com.sv.udb.clases.Ejercicio;
 import com.sv.udb.clases.Jugadores;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,6 +23,8 @@ public class Registros_jugadores extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
     String nombre, edad, estatura, peso;
+    Ejercicio objeto = new Ejercicio();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,32 +109,36 @@ public class Registros_jugadores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblpeso)
-                    .addComponent(lblmenor)
-                    .addComponent(lblmasalto)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblpeso)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtEstatura, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(txtPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnAgregar)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1)))))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(lblmasalto)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblmenor)
+                .addGap(66, 66, 66))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,12 +164,12 @@ public class Registros_jugadores extends javax.swing.JFrame {
                     .addComponent(btnAgregar)
                     .addComponent(jButton1))
                 .addGap(39, 39, 39)
-                .addComponent(lblmasalto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblmenor)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblmasalto)
+                    .addComponent(lblmenor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(lblpeso)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         pack();
@@ -182,26 +190,30 @@ public class Registros_jugadores extends javax.swing.JFrame {
     private void txtPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesoActionPerformed
-    Jugadores obj = new Jugadores();
+
+    
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        nombre = txtNombre.getText();
-        edad =txtEdad.getText();
-        estatura = txtEstatura.getText();
-        peso = txtPeso.getText();
         
-        obj.RegistroJugadores(nombre, edad, estatura, peso);
-        txtNombre.setText("");
-        txtEdad.setText("");
-        txtEstatura.setText("");
-        txtPeso.setText("");
+        
+        try {
+            if(objeto.IngresarJugadores(txtNombre.getText(), Integer.parseInt(txtEdad.getText()), Double.parseDouble(txtEstatura.getText()), Double.parseDouble(txtPeso.getText()))){
+                limpiar();
+            }else{
+                throw new Exception("Error");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        
+        
+        
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        lblmenor.setText(obj.MostarMenorEdad());
-       lblmasalto.setText(obj.MostrarMasAlto());
-        lblpeso.setText(obj.MostrarMasPeso());
-        
+        MasAlto();
+        MasPeso();
+        MenorEdad();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -238,6 +250,57 @@ public class Registros_jugadores extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void limpiar()
+    {
+        txtNombre.setText("");
+        txtEdad.setText("");
+        txtEstatura.setText("");
+        txtPeso.setText("");
+    }
+      
+    public void MasAlto(){
+        String jugador1 = "";
+       double contador = 0;
+       for(int i = 0; i<objeto.jugadores.size(); i++){
+           if(contador < objeto.jugadores.get(i).getEstatura()){
+               contador = objeto.jugadores.get(i).getEstatura();
+             jugador1 = objeto.jugadores.get(i).getNombre();
+           }
+       }
+       lblmasalto.setText(jugador1);
+    
+    }
+    
+    public void MasPeso(){
+        String jugador2 = "";
+       double contador = 0;
+       for(int i = 0; i<objeto.jugadores.size(); i++){
+           if(contador < objeto.jugadores.get(i).getPeso()){
+               contador = objeto.jugadores.get(i).getPeso();
+             jugador2 = objeto.jugadores.get(i).getNombre();
+           }
+       }
+       lblpeso.setText(jugador2);
+    
+    }
+    
+    public void MenorEdad(){
+        String jugador3 = "";
+       int contador = objeto.jugadores.get(0).getEdad();
+       for(int i = 0; i<objeto.jugadores.size(); i++){
+           if(contador > objeto.jugadores.get(i).getEdad()){
+               contador = objeto.jugadores.get(i).getEdad();
+             jugador3 = objeto.jugadores.get(i).getNombre();
+           }
+       }
+       lblmenor.setText(jugador3);
+    
+    }
+    
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;

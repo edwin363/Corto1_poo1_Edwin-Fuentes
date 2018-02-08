@@ -13,20 +13,29 @@ import java.util.Comparator;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author Estudiante
  */
 public class Jugadores {
 
-    String nombre, edad, estatura, peso;
+    String nombre;
+    int edad;
+    double estatura, peso;
 
     ArrayList jugadores = new ArrayList();
     ArrayList<Integer> jugadores2 = new ArrayList();
     ArrayList<Integer> jugadores3 = new ArrayList();
     ArrayList<Integer> jugadores4 = new ArrayList();
+
     public Jugadores() {
+    }
+
+    public Jugadores(String nombre, int edad, double estatura, double peso) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.estatura = estatura;
+        this.peso = peso;
     }
 
     public String getNombre() {
@@ -37,82 +46,94 @@ public class Jugadores {
         this.nombre = nombre;
     }
 
-    public String getEdad() {
+    public int getEdad() {
         return edad;
     }
 
-    public void setEdad(String edad) {
+    public void setEdad(int edad) {
         this.edad = edad;
     }
 
-    public String getEstatura() {
+    public double getEstatura() {
         return estatura;
     }
 
-    public void setEstatura(String estatura) {
+    public void setEstatura(double estatura) {
         this.estatura = estatura;
     }
 
-    public String getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(String peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
+    public ArrayList getJugadores() {
+        return jugadores;
+    }
 
-    //Esta es una funcion
-    public void RegistroJugadores(String nombre, String edad, String estatura, String peso) {
+    public void setJugadores(ArrayList jugadores) {
+        this.jugadores = jugadores;
+    }
 
-        try {
-            this.nombre = nombre;
-            this.edad = edad;
-            this.estatura = estatura;
-            this.peso = peso;
+    public ArrayList<Integer> getJugadores2() {
+        return jugadores2;
+    }
 
-            //this.jugadores2.add(nombre);
-            //this.jugadores2.add(edad);
-            this.jugadores2.add(Integer.parseInt(this.estatura));
-            this.jugadores3.add(Integer.parseInt(this.edad));
-            this.jugadores4.add(Integer.parseInt(this.peso));
-            //this.jugadores2.add(peso);
+    public void setJugadores2(ArrayList<Integer> jugadores2) {
+        this.jugadores2 = jugadores2;
+    }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error");
+    public ArrayList<Integer> getJugadores3() {
+        return jugadores3;
+    }
+
+    public void setJugadores3(ArrayList<Integer> jugadores3) {
+        this.jugadores3 = jugadores3;
+    }
+
+    public ArrayList<Integer> getJugadores4() {
+        return jugadores4;
+    }
+
+    public void setJugadores4(ArrayList<Integer> jugadores4) {
+        this.jugadores4 = jugadores4;
+    }
+
+    
+    
+    public String MostrarMasAlto() {
+        String hola = "";
+        // Comparator<Integer> comparator = Collections.reverseOrder();
+        Collections.sort(this.jugadores2, Collections.reverseOrder());
+        for (int altura : this.jugadores2) {
+            System.out.println(altura);
         }
 
-    }
-
-    public String MostrarMasAlto(){
-        String hola = "";
-           // Comparator<Integer> comparator = Collections.reverseOrder();
-            Collections.sort(this.jugadores2,Collections.reverseOrder() );
-            for(int altura: this.jugadores2){
-                System.out.println(altura);
-            }
-            
         return hola;
     }
-     public String MostarMenorEdad(){
-         String hola = "";
-         
-         Collections.sort(jugadores3);
-         for(int edad: this.jugadores3){
-             System.out.println(edad);
-         }
-         
-         return hola;
-     }
-     
-     public String MostrarMasPeso(){
-         String hola = "";
-         
-         Collections.sort(this.jugadores4,Collections.reverseOrder() );
-            for(int peso: this.jugadores4){
-                System.out.println(peso);
-            }
-         
-         return hola;
-     }
+
+    public String MostarMenorEdad() {
+        String hola = "";
+
+        Collections.sort(jugadores3);
+        for (int edad : this.jugadores3) {
+            System.out.println(edad);
+        }
+
+        return hola;
+    }
+
+    public String MostrarMasPeso() {
+        String hola = "";
+
+        Collections.sort(this.jugadores4, Collections.reverseOrder());
+        for (int peso : this.jugadores4) {
+            System.out.println(peso);
+        }
+
+        return hola;
+    }
 }
