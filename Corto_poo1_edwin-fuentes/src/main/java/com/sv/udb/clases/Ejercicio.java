@@ -16,15 +16,26 @@ import java.util.List;
  */
 public class Ejercicio {
     
-    public List<Jugadores> jugadores; 
+    //se declara globalmente la lista
+    public List<Jugadores> jugadores;
+    
     public Ejercicio() {
+        //se inicializa la lista
         this.jugadores = new ArrayList<>();
     }
     
-    //Esta es una funcion
+    /**
+     * 
+     * @param nombre
+     * @param edad
+     * @param estatura
+     * @param peso
+     * @return boolean
+     * En esta funcion se ingresan los futbolistas
+     */
     public boolean IngresarJugadores(String nombre, int edad, double estatura, double peso){
         boolean hola = false;
-        //puta que cerote no teoques nada
+        //aqui se agregan los parametros a la lista y dentro de ella se instancian los parametros
         try {
             this.jugadores.add(new Jugadores(nombre, edad, estatura, peso));
             hola = true;
@@ -39,6 +50,27 @@ public class Ejercicio {
         
         return hola;
         
+    }
+    
+    public Jugadores getJugadorMasAlto()
+    {
+        Jugadores resp = null;
+        try
+        {
+            double contador = 0;
+            for(Jugadores temp : this.jugadores)
+            {
+                if(contador < temp.getEstatura())
+                {
+                    resp = temp;
+                }
+            }
+        }
+        catch(Exception ex)
+        {
+            System.err.println("Error: " + ex.getMessage());
+        }
+        return resp;
     }
     
 }

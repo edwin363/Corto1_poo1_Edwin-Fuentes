@@ -194,7 +194,7 @@ public class Registros_jugadores extends javax.swing.JFrame {
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         
-        
+        //procedimiento para obtener mandar y llamar a la funcion agregar para almacenar los datos
         try {
             if(objeto.IngresarJugadores(txtNombre.getText(), Integer.parseInt(txtEdad.getText()), Double.parseDouble(txtEstatura.getText()), Double.parseDouble(txtPeso.getText()))){
                 limpiar();
@@ -210,10 +210,12 @@ public class Registros_jugadores extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        MasAlto();
+        // los metodos que se instancian en el boton en la accion click
+        /*MasAlto();
         MasPeso();
-        MenorEdad();
+        MenorEdad();*/
+       
+        lblmasalto.setText(objeto.getJugadorMasAlto().toString());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -250,7 +252,11 @@ public class Registros_jugadores extends javax.swing.JFrame {
             }
         });
     }
-    
+    /**
+     * no recive parametros
+     * no retorna nada
+     * esta funcion sirve para limpiar los campos
+     */
     public void limpiar()
     {
         txtNombre.setText("");
@@ -258,42 +264,81 @@ public class Registros_jugadores extends javax.swing.JFrame {
         txtEstatura.setText("");
         txtPeso.setText("");
     }
-      
+    
+    /**
+     * Esta funcion no recive parametros
+     * no devuelve nada
+     * sirve para sacar el jugador mas alto
+     */
+    
     public void MasAlto(){
+        //declaramos la variable 
         String jugador1 = "";
+        //inicializamos un contador en cero
        double contador = 0;
+       //este for recorre la lista y si el indice es menor al tamaño el indice se suma en +1
        for(int i = 0; i<objeto.jugadores.size(); i++){
+           
+           //condicion para sacar el jugador mas alto
            if(contador < objeto.jugadores.get(i).getEstatura()){
+               //se obtiene la estatura
                contador = objeto.jugadores.get(i).getEstatura();
+               //se obtiene el nombre del jugaor
              jugador1 = objeto.jugadores.get(i).getNombre();
            }
        }
+       //se muestra en el label
        lblmasalto.setText(jugador1);
     
     }
     
+    /**
+     * Esta funcion no recive parametros
+     * no devuelve nada
+     * sirve para sacar el jugador con mas peso
+     */
     public void MasPeso(){
+        //declaramos la variable 
         String jugador2 = "";
+        //inicializamos un contador en cero
        double contador = 0;
+        //este for recorre la lista y si el indice es menor al tamaño el indice se suma en +1
        for(int i = 0; i<objeto.jugadores.size(); i++){
+           //condicion para sacar el jugador con mas peso
            if(contador < objeto.jugadores.get(i).getPeso()){
+               //se obtiene el peso
                contador = objeto.jugadores.get(i).getPeso();
+               //se obtiene el nombre
              jugador2 = objeto.jugadores.get(i).getNombre();
            }
        }
+       //se muestra el nombre con mas peso
        lblpeso.setText(jugador2);
     
     }
     
+    /**
+     * Esta funcion no recive parametros
+     * no devuelve nada
+     * sirve para sacar el jugador con menor edad
+     */
     public void MenorEdad(){
+        //declaramos la variable tipo estring
         String jugador3 = "";
+        //se de clara el contador pero se inicializa en la posicion 0 obteniendo la edad de la lista
        int contador = objeto.jugadores.get(0).getEdad();
+       
+       //el for recorre la lista normal
        for(int i = 0; i<objeto.jugadores.size(); i++){
+           //la condicion para sacar el jugador con menor edad 
            if(contador > objeto.jugadores.get(i).getEdad()){
+               //el contador obtiene los datos en est caso la edad
                contador = objeto.jugadores.get(i).getEdad();
+               //aqui se obtiene el nombre
              jugador3 = objeto.jugadores.get(i).getNombre();
            }
        }
+       //aqui se muestra el nombre
        lblmenor.setText(jugador3);
     
     }
